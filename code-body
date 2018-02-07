@@ -1,0 +1,116 @@
+=begin
+In this program, you take the role of another worker for MegaCorp, this time completing tasks from a to do list. 
+The list is made of two items, pulled from a list of 4. 
+Test the program here: https://repl.it/@Clockknight/MegaCorp-ToDo
+=end
+
+#This program relies heavily on while loops, so a few variables are initiated so portions are not skipped.
+#Area for initializing variables:
+  #Initialize todo, since a list of 2 is guaranteed.
+todo = 2 
+answer = 0
+  #Initialize the two list variables so that they can be called in the while loop, and possible skip the loop if they do not equal eachother.
+list1 = rand(4)
+list2 = rand(4)
+  puts "randomizing"
+while list1 == list2
+  list1 = rand(4)
+  list2 = rand(4)
+  puts "randomizing"
+end
+#declare these strings so that they aren't repeated, and the code looks cleaner.
+todo0 = "Move all 17 boxes in area A of Shipping to area B."
+todo1 = "Mix 20 to 30 ounces of mixture A-32 in Chemicals and Solutions."
+todo2 = "Prep any multiple of 5 carts of bricks in Shipping."
+todo3 = "Look through the applicant pile and find 2 to 4 employees for MegaCorp to hire."
+
+=begin 
+Each of the four choices of list1 and list 2 lead to a different scenario. Each scenario also has their own goal.
+0 - move all 17 boxes from area A to area 
+1 - mix (20..30) oz of mixture A-32
+2 - prep multiples of 5 carts of bricks
+3 - find (2..4) employees for MegaCorp store 
+Begin the ToDo List.
+=end 
+
+
+while todo > 0 
+  puts "ToDo list for you, valued MegaCorp employee.\n"
+  #Using cases, print out the 2 items on the todo list.
+  print "Task 1:"
+  case list1.to_i
+  when 0 
+    puts todo0.to_s 
+    td1 = 17
+  when 1
+    puts todo1.to_s
+    td1 = (20..30)
+  when 2 
+    puts todo2.to_s
+    td1 = 5
+  when 3 
+    puts todo3.to_s 
+    td1 = (2..4)
+  else 
+    puts "TASK 1 COMPLETED"
+  end
+  
+  print "Task 2:"
+  case list2.to_i
+  when 0 
+    puts todo0.to_s 
+    td2 = 17
+  when 1
+    puts todo1.to_s
+    td2 = (20..30)
+  when 2 
+    puts todo2.to_s
+    td2 = 5
+  when 3 
+    puts todo3.to_s 
+    td2 = (2..4)
+  else 
+    puts "TASK 2 COMPLETED\n"
+  end
+  
+  #prompt user for input
+  puts "\nWhich task would you like to begin? Enter in the number the todo is on."
+  input = gets.chomp.to_i 
+  puts "Please input the value of the task completed."
+  puts "(X amount of bricks moved, etc.)"
+  answer = gets.chomp.to_i
+  
+  #begin testing answer and input to see if values are changed.
+  if input == 1 
+    if list1 == 2
+      if answer % 5 == td1 % 5
+        todo -= 1 
+        list1 = 4
+      end 
+    else  
+      if td1 === answer 
+        todo -= 1 
+        list1 = 4
+      end 
+    end 
+  end 
+    
+  if input == 2 
+    if list2 == 2 
+      if answer % 5 == td2 % 5
+        todo -= 1 
+        list2 = 4
+      end 
+    else  
+      if td2 === answer 
+        todo -= 1 
+        list2 = 4
+      end 
+    end 
+  end 
+  
+  puts "\n\n"
+  if todo == 0
+    puts "Your daily activities are completed. Excellent work.\n LOGGING OFF..."
+  end
+end
